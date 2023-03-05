@@ -2,6 +2,8 @@
     RAYA - ПРОГРАММИРОВАНИЕ И IT 
 */ 
 
+import GUI.MainClient;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -25,10 +27,12 @@ public class Client {
             new ReadThread(clientSocket,this).start();
             new WriteThread(clientSocket,this).start();
 
+            MainClient mainClient = new MainClient();
+
         }catch(Exception e){
 
         }finally {
-            System.out.println("Client has exit");
+            System.out.println("You are INSIDE");
         }
     }
 
@@ -53,5 +57,4 @@ public class Client {
       client.execute();
 
     }
-
 }

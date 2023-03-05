@@ -12,13 +12,8 @@ public class WriteThread extends Thread{
         this.socket = socket;
 
         try {
-
-
             OutputStream output = socket.getOutputStream();
             out  = new PrintWriter(output,true);
-//            writer =
-//            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
         }catch (Exception e){
 
         }
@@ -33,12 +28,12 @@ public class WriteThread extends Thread{
 
 
         try{
-            out.write(userName);
+            out.println(userName);
 
-            String text = "";
+            String text = console.readLine(userName + "-> ");
 
             while(!text.equals("END")){
-                text = console.readLine(userName);
+                text = console.readLine(userName + "-> ");
                 out.println(text);
             }
 

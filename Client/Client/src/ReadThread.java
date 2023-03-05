@@ -1,4 +1,7 @@
+import GUI.ISetText;
+
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
@@ -23,11 +26,11 @@ public class ReadThread extends Thread{
         while(true){
             try{
                 String response =in.readLine();
-                System.out.println("\n Response: " + response);
-
-                if(client.getUserName() != null){
-                    System.out.println("User: "+ client.getUserName());
-                }
+                System.out.println("\n" + response);
+//                if(client.getUserName() != null){
+//                    System.out.println("User: "+ client.getUserName());
+//                    System.out.print(client.getUserName() + "-> ");
+//                }
             }catch (Exception e){
 
             }

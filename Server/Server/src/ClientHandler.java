@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class ClientHandler extends Thread{
     private Server server;
     private PrintWriter outMessage;
-//    private Scanner inMessage;
     private Socket socket;
 
     private static int clients_count = 0;
@@ -20,9 +19,6 @@ public class ClientHandler extends Thread{
             clients_count++;
             this.server = server;
             this.socket = socket;
-//            this.outMessage = new PrintWriter(socket.getOutputStream());
-//            this.inMessage = new Scanner(socket.getInputStream());
-
         }catch (Exception e){
 
         }
@@ -55,8 +51,7 @@ public class ClientHandler extends Thread{
 
             String userName = reader.readLine();
             server.addUserName(userName);
-//            server.broadcast(userName);
-//            System.out.println(userName);
+            System.out.println("New client: " + userName);
             while (true){
                 server.broadcast("Новый участник",this);
                 server.broadcast("Клиентов в чате = " + clients_count,this);
@@ -69,7 +64,6 @@ public class ClientHandler extends Thread{
 
                     clientMessage = reader.readLine();
                     server.broadcast(userName + " - " + clientMessage, this);
-
             }while (!clientMessage.equals("END"));
             socket.close();
         }catch (Exception e){

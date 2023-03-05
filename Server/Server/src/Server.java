@@ -29,8 +29,7 @@ public class Server {
                     ClientHandler client = new ClientHandler(clientSocket,this);
 
                     clients.add(client);
-//                    new Thread(client).start();      // Поток клиента
-                client.start();
+                    client.start();
             }
         }catch (Exception e){
 
@@ -51,7 +50,7 @@ public class Server {
         for(ClientHandler client : clients){
             if(client != clientHandler){
             client.sendMessage(message);        // Сообщение для всех клиентов
-                 }
+            }
         }
     }
 
