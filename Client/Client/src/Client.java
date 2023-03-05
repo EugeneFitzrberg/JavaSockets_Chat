@@ -2,7 +2,7 @@
     RAYA - ПРОГРАММИРОВАНИЕ И IT 
 */ 
 
-import GUI.MainClient;
+import GUI.GUICLient;
 
 import java.io.*;
 import java.net.Socket;
@@ -23,11 +23,14 @@ public class Client {
 
     public void execute(){
         try{
-            clientSocket = new Socket(host,port);       // Подключение к серверу на localhost:4040
-            new ReadThread(clientSocket,this).start();
-            new WriteThread(clientSocket,this).start();
 
-            MainClient mainClient = new MainClient();
+            GUICLient guicLient = new GUICLient();
+
+            clientSocket = new Socket(host,port);       // Подключение к серверу на localhost:4040
+            new ReadThread(clientSocket,this, guicLient).start();
+            new WriteThread(clientSocket,this, guicLient).start();
+
+
 
         }catch(Exception e){
 

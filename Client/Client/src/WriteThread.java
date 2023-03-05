@@ -1,3 +1,6 @@
+import GUI.GUICLient;
+import GUI.ISetText;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -6,11 +9,11 @@ public class WriteThread extends Thread{
     private Socket socket;
     private Client client;
     private static PrintWriter out;
-
-    public WriteThread(Socket socket, Client client){
+    private ISetText iSetText;
+    public WriteThread(Socket socket, Client client, ISetText guicLient){
         this.client = client;
         this.socket = socket;
-
+        this.iSetText = guicLient;
         try {
             OutputStream output = socket.getOutputStream();
             out  = new PrintWriter(output,true);
@@ -25,7 +28,7 @@ public class WriteThread extends Thread{
         Console console = System.console();
         String userName = console.readLine("Enter username :");
         client.setUserName(userName);
-
+        iSetText.setTitle(userName);
 
         try{
             out.println(userName);

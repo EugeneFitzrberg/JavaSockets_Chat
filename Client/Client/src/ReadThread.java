@@ -1,3 +1,4 @@
+import GUI.GUICLient;
 import GUI.ISetText;
 
 import java.io.BufferedReader;
@@ -9,9 +10,11 @@ public class ReadThread extends Thread{
     private static BufferedReader in;
     private Socket socket;
     private Client client;
-    public ReadThread(Socket socket, Client client){
+    private ISetText iSetText;
+    public ReadThread(Socket socket, Client client, ISetText guicLient){
         this.client = client;
         this.socket = socket;
+        this.iSetText = guicLient;
 
         try{
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -27,6 +30,7 @@ public class ReadThread extends Thread{
             try{
                 String response =in.readLine();
                 System.out.println("\n" + response);
+                iSetText.setDate(response);
 //                if(client.getUserName() != null){
 //                    System.out.println("User: "+ client.getUserName());
 //                    System.out.print(client.getUserName() + "-> ");
